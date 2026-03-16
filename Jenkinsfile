@@ -3,12 +3,10 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                dir('backend') {
-                    script {
-                        def imageName = "backend-app:${env.BUILD_NUMBER}"
-                        sh "docker build -t ${imageName} ."
-                        env.BACKEND_IMAGE = imageName
-                    }
+                script {
+                    def imageName = "backend-app:${env.BUILD_NUMBER}"
+                    sh "docker build -t ${imageName} ."
+                    env.BACKEND_IMAGE = imageName
                 }
             }
         }
